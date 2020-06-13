@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, GestureResponderEvent, ActivityIndicator } from 'react-native';
 
-type WeatherAppButtonProps = {};
+type WeatherAppButtonProps = {
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  loading?: boolean;
+};
 
-export const WeatherAppButton: React.FC<WeatherAppButtonProps> = ({ children }) => {
+export const WeatherAppButton: React.FC<WeatherAppButtonProps> = ({ children, onPress, loading }) => {
   return (
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.text}>{children}</Text>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      {loading ? <ActivityIndicator /> : <Text style={styles.text}>{children}</Text>}
     </TouchableOpacity>
   );
 };

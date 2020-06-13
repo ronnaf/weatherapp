@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import { Environment } from './Environment';
 import { createWeatherAppNavigator } from './Navigator';
+import { Auth0AuthenticationService } from './services/AuthenticationService';
 import { store } from './store';
 
 export const init = () => {
@@ -20,7 +21,7 @@ export const init = () => {
       },
     },
     services: {
-      authentication: {},
+      authentication: Auth0AuthenticationService,
     },
   });
 

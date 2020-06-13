@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Alert } from 'react-native';
+
+import { usersSlice } from '../../slices/users-slice';
+import { Environment } from '../../Environment';
+
+const { authenticateUser } = usersSlice.actions;
 
 export interface LoginProps {
   // Outputs
@@ -14,17 +21,26 @@ export interface LoginProps {
 
 // NOTE that this HOC accepts ANY component fulfilling the prop contract.
 export const loginContainer = (Screen: React.ComponentType<LoginProps>) => () => {
-  // "Business logic" goes here.
-  // - Maybe call `useSelector(...)` and/or `useDispatch()` to grab values from the Redux store.
+  const dispatch = useDispatch();
 
   const [isSigningIn, setSigningIn] = useState(false);
+
+  const { services } = Environment.current();
+  const { authentication } = services;
 
   return (
     <Screen
       isSigningIn={isSigningIn}
       signInButtonEnabled={true}
       userTappedSignIn={async () => {
-        // implement sign in
+        setSigningIn(true);
+        try {
+          const accessToken = await authentication.loginWithGithub();
+          dispatch(authenticateUser({ accessToken }));
+        } catch (e) {
+          Alert.alert('Login unsuccessful!');
+        }
+        setSigningIn(false);
       }}
     />
   );

@@ -9,10 +9,12 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTLinkingManager.h> // u did this for auth0
 
 #import <UMCore/UMModuleRegistry.h>
 #import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
+
 
 @interface AppDelegate ()
 
@@ -76,6 +78,13 @@
 - (void)appController:(EXUpdatesAppController *)appController didStartWithSuccess:(BOOL)success
 {
   appController.bridge = [self initializeReactNativeApp];
+}
+
+// u did this for auth0
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+{
+  return [RCTLinkingManager application:app openURL:url options:options];
 }
 
 @end

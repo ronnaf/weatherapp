@@ -9,6 +9,7 @@
  */
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -18,6 +19,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
  */
 import { loginContainer } from './components/containers/LoginContainer';
 import { LoginScreen } from './components/screens/LoginScreen';
+import { RootState } from './store';
 
 /**
  * connected components
@@ -30,7 +32,7 @@ const Login = loginContainer(LoginScreen);
 const SampleComponent = () => {
   return (
     <View>
-      <Text>Hello, world!</Text>
+      <Text>Hello, world! {Math.random()}</Text>
     </View>
   );
 };
@@ -50,22 +52,28 @@ export const createWeatherAppNavigator = (): {
 
   const HomeScreen = () => {
     return (
-      <Drawer.Navigator>
-        <Drawer.Screen name="Feed" component={SampleComponent} />
-        <Drawer.Screen name="Article" component={SampleComponent} />
+      <Drawer.Navigator openByDefault={true} initialRouteName="Github">
+        <Drawer.Screen name="Github" component={SampleComponent} />
+        <Drawer.Screen name="Weather" component={SampleComponent} />
       </Drawer.Navigator>
     );
   };
 
   return {
-    Navigator: () => (
-      <NavigationContainer ref={ref => (navigatorRef = ref)}>
-        <Stack.Navigator>
-          <Stack.Screen options={{ headerShown: false }} name={'Login'} component={Login} />
-          <Stack.Screen name={'Home'} component={HomeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    ),
+    Navigator: () => {
+      const { isAuthenticated } = useSelector((state: RootState) => state.users);
+      return (
+        <NavigationContainer ref={ref => (navigatorRef = ref)}>
+          <Stack.Navigator>
+            {isAuthenticated ? (
+              <Stack.Screen name={'Home'} component={HomeScreen} />
+            ) : (
+              <Stack.Screen options={{ headerShown: false }} name={'Login'} component={Login} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      );
+    },
     navigate: (route, params) => {
       navigatorRef?.navigate(route, params);
     },

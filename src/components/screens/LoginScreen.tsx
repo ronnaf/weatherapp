@@ -14,7 +14,9 @@ export const LoginScreen: React.FC<LoginProps> = ({ isSigningIn, signInButtonEna
         <Text style={styles.subtitle}>Log in to continue</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <WeatherAppButton>Login with Github</WeatherAppButton>
+        <WeatherAppButton onPress={userTappedSignIn} loading={isSigningIn}>
+          Login with Github
+        </WeatherAppButton>
       </View>
     </WeatherAppContent>
   );
