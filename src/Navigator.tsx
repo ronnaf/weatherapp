@@ -17,14 +17,17 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 /**
  * native imports
  */
+import { RootState } from './store';
 import { loginContainer } from './components/containers/LoginContainer';
 import { LoginScreen } from './components/screens/LoginScreen';
-import { RootState } from './store';
+import { homeContainer } from './components/containers/HomeContainer';
+import { HomeScreen } from './components/screens/HomeScreen';
 
 /**
  * connected components
  */
 const Login = loginContainer(LoginScreen);
+const Home = homeContainer(HomeScreen);
 
 /**
  * temporary placeholder components
@@ -53,7 +56,7 @@ export const createWeatherAppNavigator = (): {
   const HomeScreen = () => {
     return (
       <Drawer.Navigator openByDefault={true} initialRouteName="Github">
-        <Drawer.Screen name="Github" component={SampleComponent} />
+        <Drawer.Screen name="Github" component={Home} />
         <Drawer.Screen name="Weather" component={SampleComponent} />
       </Drawer.Navigator>
     );

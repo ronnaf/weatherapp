@@ -2,10 +2,12 @@ import { registerRootComponent } from 'expo';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { Environment } from './Environment';
-import { createWeatherAppNavigator } from './Navigator';
-import { Auth0AuthenticationService } from './services/AuthenticationService';
 import { store } from './store';
+import { createWeatherAppNavigator } from './Navigator';
+import { Environment } from './Environment';
+import { Auth0AuthenticationService } from './services/AuthenticationService';
+import { Auth0ManagementService } from './services/ManagementService';
+import { AsyncStorageService } from './services/AsyncStorageService';
 
 export const init = () => {
   // 1. Set the Environment.
@@ -22,6 +24,8 @@ export const init = () => {
     },
     services: {
       authentication: Auth0AuthenticationService,
+      management: Auth0ManagementService,
+      storage: AsyncStorageService,
     },
   });
 

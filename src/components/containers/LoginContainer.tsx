@@ -26,7 +26,7 @@ export const loginContainer = (Screen: React.ComponentType<LoginProps>) => () =>
   const [isSigningIn, setSigningIn] = useState(false);
 
   const { services } = Environment.current();
-  const { authentication } = services;
+  const { authentication, storage } = services;
 
   return (
     <Screen
@@ -36,7 +36,8 @@ export const loginContainer = (Screen: React.ComponentType<LoginProps>) => () =>
         setSigningIn(true);
         try {
           const accessToken = await authentication.loginWithGithub();
-          dispatch(authenticateUser({ accessToken }));
+          await storage.storeItem('access-token', accessToken);
+          dispatch(authenticateUser());
         } catch (e) {
           Alert.alert('Login unsuccessful!');
         }
