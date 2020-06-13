@@ -7,9 +7,6 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true,
-    "allowJs": true,
-    "checkJs": true
-  },
-  "exclude": ["node_modules"]
+    "strict": true
+  }
 }
