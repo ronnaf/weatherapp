@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, Linking, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, Linking, ActivityIndicator, ScrollView } from 'react-native';
 
 import { HomeProps } from '../containers/HomeContainer';
 import { WeatherAppContent } from '../shared/WeatherAppContent';
 import { WeatherAppButton } from '../shared/WeatherAppButton';
+import { WeatherAppCard } from '../shared/WeatherAppCard';
 
 export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
   return (
@@ -24,6 +25,13 @@ export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
             </Text>
           </>
         )}
+      </View>
+      <View style={styles.scrollViewContainer}>
+        <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
+          {/* could be WeatherAppCard */}
+          <WeatherAppCard title={'Latitude'} value={'47.159401'} />
+          <WeatherAppCard title={'Latitude'} value={'34.330502'} isLast={true} />
+        </ScrollView>
       </View>
       <View style={styles.buttonContainer}>
         <WeatherAppButton>Get Location</WeatherAppButton>
@@ -55,8 +63,35 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 6,
   },
+  scrollViewContainer: {
+    flex: 8,
+    marginHorizontal: -16,
+  },
+  scrollView: {
+    paddingTop: 28,
+    paddingBottom: 28,
+  },
+  locCard: {
+    padding: 18,
+    backgroundColor: 'white',
+    width: 212,
+    borderRadius: 16,
+    shadowColor: '#D6D5D5',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+  },
+  locCardMiddle: {
+    marginHorizontal: 18,
+  },
+  locCardLast: {
+    marginRight: 18,
+  },
   buttonContainer: {
-    flex: 1,
+    flex: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingBottom: 100,
