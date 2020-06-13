@@ -15,15 +15,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 /**
  * native imports
- * ex.
- * import { loginContainer } from './components/containers/LoginContainer';
- * import { LoginScreen } from './components/screens/LoginScreen';
  */
+import { loginContainer } from './components/containers/LoginContainer';
+import { LoginScreen } from './components/screens/LoginScreen';
 
 /**
  * connected components
- * ex. const Login = loginContainer(LoginScreen);
  */
+const Login = loginContainer(LoginScreen);
 
 /**
  * temporary placeholder components
@@ -62,7 +61,7 @@ export const createWeatherAppNavigator = (): {
     Navigator: () => (
       <NavigationContainer ref={ref => (navigatorRef = ref)}>
         <Stack.Navigator>
-          <Stack.Screen name={'Login'} component={SampleComponent} />
+          <Stack.Screen options={{ headerShown: false }} name={'Login'} component={Login} />
           <Stack.Screen name={'Home'} component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
