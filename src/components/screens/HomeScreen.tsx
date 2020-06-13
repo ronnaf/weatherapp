@@ -5,17 +5,14 @@ import { HomeProps } from '../containers/HomeContainer';
 import { WeatherAppContent } from '../shared/WeatherAppContent';
 import { WeatherAppButton } from '../shared/WeatherAppButton';
 import { WeatherAppCard } from '../shared/WeatherAppCard';
+import { WeatherAppSpinner } from '../shared/WeatherAppSpinner';
 
 export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
   return (
     <WeatherAppContent>
       <View style={styles.titleContainer}>
         {isGettingInfo ? (
-          // could be separated into a WeatherApp component
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator style={{ marginBottom: 16 }} size="large" />
-            <Text>Getting your information</Text>
-          </View>
+          <WeatherAppSpinner title={'Getting your information'} />
         ) : (
           <>
             <Text style={styles.greeting}>Good day!</Text>
@@ -28,7 +25,6 @@ export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
       </View>
       <View style={styles.scrollViewContainer}>
         <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-          {/* could be WeatherAppCard */}
           <WeatherAppCard title={'Latitude'} value={'47.159401'} />
           <WeatherAppCard title={'Latitude'} value={'34.330502'} isLast={true} />
         </ScrollView>
@@ -43,12 +39,6 @@ export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
 const styles = StyleSheet.create({
   titleContainer: {
     marginTop: 16,
-  },
-  loadingContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 24,
   },
   greeting: {
     fontSize: 16,
@@ -70,25 +60,6 @@ const styles = StyleSheet.create({
   scrollView: {
     paddingTop: 28,
     paddingBottom: 28,
-  },
-  locCard: {
-    padding: 18,
-    backgroundColor: 'white',
-    width: 212,
-    borderRadius: 16,
-    shadowColor: '#D6D5D5',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-  },
-  locCardMiddle: {
-    marginHorizontal: 18,
-  },
-  locCardLast: {
-    marginRight: 18,
   },
   buttonContainer: {
     flex: 10,

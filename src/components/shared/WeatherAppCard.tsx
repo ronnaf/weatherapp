@@ -10,10 +10,10 @@ type WeatherAppCardProps = {
 export const WeatherAppCard: React.FC<WeatherAppCardProps> = ({ title, value, isLast = false }) => {
   return (
     <View style={[styles.locCard, isLast ? styles.locCardLast : styles.locCardMiddle]}>
-      <Text style={{ marginBottom: 8, textTransform: 'uppercase' }}>{title}</Text>
-      <Text style={{ fontWeight: 'bold', fontSize: 26 }}>{value}</Text>
-      <View style={{ position: 'absolute', bottom: 16, left: 16 }}>
-        <Text style={{ color: '#D6D5D5' }}>(bg graphics here)</Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.value}>{value}</Text>
+      <View style={styles.phContainer}>
+        <Text style={styles.phText}>(bg graphics here)</Text>
       </View>
     </View>
   );
@@ -38,5 +38,21 @@ const styles = StyleSheet.create({
   },
   locCardLast: {
     marginRight: 18,
+  },
+  title: {
+    marginBottom: 8,
+    textTransform: 'uppercase',
+  },
+  value: {
+    fontWeight: 'bold',
+    fontSize: 26,
+  },
+  phContainer: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+  },
+  phText: {
+    color: '#D6D5D5',
   },
 });

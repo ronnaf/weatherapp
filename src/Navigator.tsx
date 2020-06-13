@@ -56,7 +56,7 @@ export const createWeatherAppNavigator = (): {
   const HomeScreen = () => {
     return (
       <Drawer.Navigator openByDefault={true} initialRouteName="Github">
-        <Drawer.Screen name="Github" component={Home} />
+        <Drawer.Screen name="Location" component={Home} />
         <Drawer.Screen name="Weather" component={SampleComponent} />
       </Drawer.Navigator>
     );
@@ -64,7 +64,8 @@ export const createWeatherAppNavigator = (): {
 
   return {
     Navigator: () => {
-      const { isAuthenticated } = useSelector((state: RootState) => state.users);
+      // const { isAuthenticated } = useSelector((state: RootState) => state.users);
+      const isAuthenticated = true;
       return (
         <NavigationContainer ref={ref => (navigatorRef = ref)}>
           <Stack.Navigator>
