@@ -8,7 +8,6 @@
  * The `createNavigator` function below should grow in length as more screens are added.
  */
 import React from 'react';
-import { Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,23 +21,15 @@ import { loginContainer } from './components/containers/LoginContainer';
 import { LoginScreen } from './components/screens/LoginScreen';
 import { homeContainer } from './components/containers/HomeContainer';
 import { HomeScreen } from './components/screens/HomeScreen';
+import { weatherContainer } from './components/containers/WeatherContainer';
+import { WeatherScreen } from './components/screens/WeatherScreen';
 
 /**
  * connected components
  */
 const Login = loginContainer(LoginScreen);
 const Home = homeContainer(HomeScreen);
-
-/**
- * temporary placeholder components
- */
-const SampleComponent = () => {
-  return (
-    <View>
-      <Text>Hello, world! {Math.random()}</Text>
-    </View>
-  );
-};
+const Weather = weatherContainer(WeatherScreen);
 
 /**
  * Creates the WeatherApp root navigator component, as well as a function for
@@ -57,15 +48,14 @@ export const createWeatherAppNavigator = (): {
     return (
       <Drawer.Navigator openByDefault={true} initialRouteName="Github">
         <Drawer.Screen name="Location" component={Home} />
-        <Drawer.Screen name="Weather" component={SampleComponent} />
+        <Drawer.Screen name="Weather" component={Weather} />
       </Drawer.Navigator>
     );
   };
 
   return {
     Navigator: () => {
-      // const { isAuthenticated } = useSelector((state: RootState) => state.users);
-      const isAuthenticated = true;
+      const { isAuthenticated } = useSelector((state: RootState) => state.users);
       return (
         <NavigationContainer ref={ref => (navigatorRef = ref)}>
           <Stack.Navigator>
