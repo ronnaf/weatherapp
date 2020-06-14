@@ -2,6 +2,7 @@ import { AuthenticationService } from './services/AuthenticationService';
 import { LocalStorageService } from './services/AsyncStorageService';
 import { ManagementService } from './services/ManagementService';
 import { LocationService } from './services/LocationService';
+import { WeatherService } from './services/WeatherService';
 
 type WeatherAppEnvironment = {
   /** A proxy for handling navigation. */
@@ -22,6 +23,9 @@ type WeatherAppEnvironment = {
 
     /** A service for expo location. */
     location: LocationService;
+
+    /** A service for weather by open weather. */
+    weather: WeatherService;
   };
 };
 

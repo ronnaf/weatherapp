@@ -9,8 +9,7 @@ export type LocationService = {
 };
 
 /**
- *  A `Management Service` backed by Auth0
- *  see: https://auth0.com/docs/api/management/v2
+ *  A `Location Service` backed by expo-location
  */
 export const ExpoLocationService: LocationService = {
   getLocation: async () => {

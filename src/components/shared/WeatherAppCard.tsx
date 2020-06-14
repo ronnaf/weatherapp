@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 type WeatherAppCardProps = {
   title: string;
-  value: number;
+  value: number | string;
   isLast?: boolean;
 };
 

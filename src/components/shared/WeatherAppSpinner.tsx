@@ -3,13 +3,14 @@ import { ActivityIndicator, Text, View, StyleSheet } from 'react-native';
 
 type WeatherAppSpinnerProps = {
   title?: string;
+  size?: number | 'small' | 'large';
 };
 
-export const WeatherAppSpinner: React.FC<WeatherAppSpinnerProps> = ({ title = 'Loading' }) => {
+export const WeatherAppSpinner: React.FC<WeatherAppSpinnerProps> = ({ title, size = 'large' }) => {
   return (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator style={styles.spinner} size="large" />
-      <Text>{title}</Text>
+      <ActivityIndicator size={size} />
+      {title && <Text style={styles.text}>{title}</Text>}
     </View>
   );
 };
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 24,
   },
-  spinner: {
+  text: {
     marginBottom: 16,
   },
 });

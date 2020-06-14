@@ -4,20 +4,33 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { WeatherProps } from '../containers/WeatherContainer';
 import { WeatherAppContent } from '../shared/WeatherAppContent';
 import { WeatherAppCard } from '../shared/WeatherAppCard';
+import { WeatherAppSpinner } from '../shared/WeatherAppSpinner';
 
 export const WeatherScreen: React.FC<WeatherProps> = ({ weather, isGettingWeather }) => {
+  const getFormattedDate = () => {
+    // move to utils
+    const dateNow = new Date();
+    return `${dateNow.getMonth() + 1}/${dateNow.getDate()}/${dateNow.getFullYear()}`;
+  };
+
   return (
     <WeatherAppContent>
       <View style={styles.titleContainer}>
         <Text style={styles.greeting}>Good day!</Text>
         <Text style={styles.title}>Weather Today</Text>
       </View>
+
+      {isGettingWeather && <WeatherAppSpinner size="small" />}
+
       <View style={styles.scrollViewContainer}>
         <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-          <WeatherAppCard title={'Latitude'} value={123} />
-          <WeatherAppCard title={'Latitude'} value={23} isLast={true} />
+          <WeatherAppCard title={'Date'} value={getFormattedDate()} />
+          <WeatherAppCard title={'Temperature'} value={`${weather.temp} ℉`} isLast={true} />
         </ScrollView>
       </View>
+
+      {/* for spacing purposes only */}
+      <View style={{ flex: 10 }} />
     </WeatherAppContent>
   );
 };
@@ -35,7 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   scrollViewContainer: {
-    flex: 8,
+    flex: 7,
     marginHorizontal: -16,
   },
   scrollView: {

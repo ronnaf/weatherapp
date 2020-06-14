@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from 'react-native';
-import * as Location from 'expo-location';
 
 import { usersSlice, User } from '../../slices/users-slice';
 import { Environment } from '../../Environment';
@@ -62,10 +61,9 @@ export const homeContainer = (Screen: React.ComponentType<HomeProps>) => () => {
         setGettingLocation(true);
         try {
           const loc = await services.location.getLocation();
-          console.log('loc --', location);
           dispatch(storeLocation({ location: loc }));
         } catch (e) {
-          Alert.alert('Failed to get location!');
+          Alert.alert(e.message || 'Failed to get location!');
         }
         setGettingLocation(false);
       }}
