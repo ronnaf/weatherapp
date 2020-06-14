@@ -32,7 +32,7 @@ export const HomeScreen: React.FC<HomeProps> = ({
       <View style={styles.scrollViewContainer}>
         <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
           <WeatherAppCard title={'Latitude'} value={location.lat} isFirst />
-          <WeatherAppCard title={'Latitude'} value={location.long} />
+          <WeatherAppCard title={'Longitude'} value={location.long} />
         </ScrollView>
       </View>
       <View style={styles.buttonContainer}>
