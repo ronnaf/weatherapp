@@ -59,7 +59,7 @@ export const homeContainer = (Screen: React.ComponentType<HomeProps>) => () => {
       user={user}
       location={location}
       userTappedGetLocation={async () => {
-        setGettingInfo(true);
+        setGettingLocation(true);
         try {
           const loc = await services.location.getLocation();
           console.log('loc --', location);
@@ -67,7 +67,7 @@ export const homeContainer = (Screen: React.ComponentType<HomeProps>) => () => {
         } catch (e) {
           Alert.alert('Failed to get location!');
         }
-        setGettingInfo(false);
+        setGettingLocation(false);
       }}
     />
   );
