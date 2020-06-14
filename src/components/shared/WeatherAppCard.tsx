@@ -4,12 +4,12 @@ import { StyleSheet, Text, View } from 'react-native';
 type WeatherAppCardProps = {
   title: string;
   value: number | string;
-  isLast?: boolean;
+  isFirst?: boolean;
 };
 
-export const WeatherAppCard: React.FC<WeatherAppCardProps> = ({ title, value, isLast = false }) => {
+export const WeatherAppCard: React.FC<WeatherAppCardProps> = ({ title, value, isFirst = false }) => {
   return (
-    <View style={[styles.locCard, isLast ? styles.locCardLast : styles.locCardMiddle]}>
+    <View style={[styles.locCard, isFirst ? styles.locCardFirst : styles.locCardNext]}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.value}>{value}</Text>
       <View style={styles.phContainer}>
@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 8,
   },
-  locCardMiddle: {
+  locCardFirst: {
     marginHorizontal: 18,
   },
-  locCardLast: {
+  locCardNext: {
     marginRight: 18,
   },
   title: {

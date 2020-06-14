@@ -58,11 +58,11 @@ export const createWeatherAppNavigator = (): {
       const { isAuthenticated } = useSelector((state: RootState) => state.users);
       return (
         <NavigationContainer ref={ref => (navigatorRef = ref)}>
-          <Stack.Navigator>
+          <Stack.Navigator headerMode="none">
             {isAuthenticated ? (
               <Stack.Screen name={'Home'} component={HomeScreen} />
             ) : (
-              <Stack.Screen options={{ headerShown: false }} name={'Login'} component={Login} />
+              <Stack.Screen name={'Login'} component={Login} />
             )}
           </Stack.Navigator>
         </NavigationContainer>
