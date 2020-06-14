@@ -6,10 +6,11 @@ export type User = {
   email: string;
   picture?: string;
 };
-
 type SliceState = {
   isAuthenticated: boolean;
   user: User;
+  location: { lat: number; long: number };
+  weather: {};
 };
 
 const initialState: SliceState = {
@@ -19,6 +20,8 @@ const initialState: SliceState = {
     nickname: '',
     email: '',
   },
+  location: { lat: 0, long: 0 },
+  weather: {},
 };
 
 // usage: import { actions, reducer } from sampleSlice
@@ -31,6 +34,9 @@ export const usersSlice = createSlice({
     },
     storeUserInfo(state, actions: PayloadAction<{ userInfo: User }>) {
       state.user = actions.payload.userInfo;
+    },
+    storeLocation(state, actions: PayloadAction<{ location: { lat: number; long: number } }>) {
+      state.location = actions.payload.location;
     },
   },
 });

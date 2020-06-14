@@ -7,7 +7,13 @@ import { WeatherAppButton } from '../shared/WeatherAppButton';
 import { WeatherAppCard } from '../shared/WeatherAppCard';
 import { WeatherAppSpinner } from '../shared/WeatherAppSpinner';
 
-export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
+export const HomeScreen: React.FC<HomeProps> = ({
+  isGettingInfo,
+  isGettingLocation,
+  user,
+  location,
+  userTappedGetLocation,
+}) => {
   return (
     <WeatherAppContent>
       <View style={styles.titleContainer}>
@@ -25,12 +31,14 @@ export const HomeScreen: React.FC<HomeProps> = ({ isGettingInfo, user }) => {
       </View>
       <View style={styles.scrollViewContainer}>
         <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-          <WeatherAppCard title={'Latitude'} value={'47.159401'} />
-          <WeatherAppCard title={'Latitude'} value={'34.330502'} isLast={true} />
+          <WeatherAppCard title={'Latitude'} value={location.lat} />
+          <WeatherAppCard title={'Latitude'} value={location.long} isLast={true} />
         </ScrollView>
       </View>
       <View style={styles.buttonContainer}>
-        <WeatherAppButton>Get Location</WeatherAppButton>
+        <WeatherAppButton loading={isGettingLocation} onPress={userTappedGetLocation}>
+          Get Location
+        </WeatherAppButton>
       </View>
     </WeatherAppContent>
   );

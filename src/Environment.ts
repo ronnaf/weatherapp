@@ -1,6 +1,7 @@
 import { AuthenticationService } from './services/AuthenticationService';
 import { LocalStorageService } from './services/AsyncStorageService';
 import { ManagementService } from './services/ManagementService';
+import { LocationService } from './services/LocationService';
 
 type WeatherAppEnvironment = {
   /** A proxy for handling navigation. */
@@ -18,6 +19,9 @@ type WeatherAppEnvironment = {
 
     /** A service for Auth0's Management API. */
     management: ManagementService;
+
+    /** A service for expo location. */
+    location: LocationService;
   };
 };
 

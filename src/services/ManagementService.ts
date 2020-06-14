@@ -1,5 +1,3 @@
-import Auth0 from 'react-native-auth0';
-
 import { Environment } from '../Environment';
 
 const baseUrl = 'https://dev-cb7dowmt.auth0.com';

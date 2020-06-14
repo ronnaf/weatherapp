@@ -8,6 +8,7 @@ import { Environment } from './Environment';
 import { Auth0AuthenticationService } from './services/AuthenticationService';
 import { Auth0ManagementService } from './services/ManagementService';
 import { AsyncStorageService } from './services/AsyncStorageService';
+import { ExpoLocationService } from './services/LocationService';
 
 export const init = () => {
   // 1. Set the Environment.
@@ -26,6 +27,7 @@ export const init = () => {
       authentication: Auth0AuthenticationService,
       management: Auth0ManagementService,
       storage: AsyncStorageService,
+      location: ExpoLocationService,
     },
   });
 

@@ -3144,7 +3144,7 @@ expo-linking@~1.0.0:
     qs "^6.5.0"
     url-parse "^1.4.4"
 
-expo-location@~8.1.0:
+expo-location@^8.1.0, expo-location@~8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-8.1.0.tgz#6a71ad9a8b78d5f016a30a02013c3b28f46d0b1b"
   integrity sha512-G9JvsK1t9Z5Iybf+FCG81Jgm9Ee9leqpazxOPVabUJEWu/55Iex3yLGX04BuIA4ozAlJKBPzkhPdyqKdC7zrSw==
