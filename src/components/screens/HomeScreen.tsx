@@ -23,7 +23,7 @@ export const HomeScreen: React.FC<HomeProps> = ({
           <>
             <Text style={styles.greeting}>Good day!</Text>
             <Text style={styles.title}>{user.name}</Text>
-            <Text style={styles.link} onPress={() => Linking.openURL('http://google.com')}>
+            <Text style={styles.link} onPress={() => Linking.openURL(`https://github.com/${user.nickname}`)}>
               https://github.com/{user.nickname}
             </Text>
           </>
