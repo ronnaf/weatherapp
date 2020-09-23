@@ -1,4 +1,4 @@
-![weatherapp](docs/weatherapp.png =230x)
+<img width="300px" src="docs/weatherapp.png" />
 
 # weatherapp
 
